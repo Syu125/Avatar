@@ -1,148 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1A83DC"
+    android:background="@color/colorPrimary"
     tools:context=".WelcomeScreen">
 
-    <TextView
-        android:id="@+id/textView"
+    <ImageView
+        android:id="@+id/bg"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="#2699FB"
-        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/navbar"
+        android:background="@drawable/menu_bg"
+        android:scaleType="centerCrop"
+        android:src="@drawable/menu_bg" />
+
+    <TextView
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorPrimary"
+        android:paddingTop="18dp"
         android:text="AVATAR"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.635" />
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/today"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/navbar"
+        android:background="none"
+        android:gravity="start"
+        android:paddingLeft="24dp"
+        android:paddingTop="12dp"
+        android:text="Today"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textSize="16dp" />
 
     <Button
         android:id="@+id/fire"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="#1A83DC"
-        android:gravity="left"
+        android:layout_below="@id/today"
+        android:background="none"
+        android:gravity="start"
+        android:paddingLeft="72dp"
+        android:paddingTop="12dp"
         android:text=" Fire"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.414" />
-
-    <Button
-        android:id="@+id/water"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="#1A83DC"
-        android:gravity="left"
-        android:text="Water"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteY="146dp"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textSize="16dp" />
 
     <Button
         android:id="@+id/earth"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="236dp"
-        android:background="#1A83DC"
-        android:gravity="left"
+        android:layout_below="@id/fire"
+        android:background="none"
+        android:gravity="start"
+        android:paddingLeft="72dp"
+        android:paddingTop="12dp"
         android:text="Earth"
+        android:textAlignment="viewStart"
         android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fire" />
+        android:textSize="16dp" />
 
     <Button
         android:id="@+id/air"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginBottom="404dp"
-        android:background="#1A83DC"
-        android:gravity="left"
+        android:layout_below="@id/earth"
+        android:background="none"
+        android:gravity="start"
+        android:paddingLeft="72dp"
+        android:paddingTop="12dp"
         android:text="Air"
+        android:textAlignment="viewStart"
         android:textColor="#FFFFFF"
-        android:textStyle="bold"
+        android:textSize="16dp" />
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/earth"
-        app:layout_constraintVertical_bias="0.0" />
+    <Button
+        android:id="@+id/water"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/air"
+        android:background="none"
+        android:gravity="start"
+        android:paddingLeft="72dp"
+        android:paddingTop="12dp"
+        android:text="Water"
+        android:textAlignment="viewStart"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp" />
 
-    <ImageView
-        android:id="@+id/goToPro"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/profile"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.041"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/water"
-        app:layout_constraintVertical_bias="0.315" />
-
-    <ImageView
-        android:id="@+id/airIcon"
-    android:layout_width="24dp"
-    android:layout_height="24dp"
-    android:src="@drawable/air"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintHorizontal_bias="0.498"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="@+id/water" />
+    <ImageButton
+        android:id="@+id/menuBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_alignStart="@id/navbar"
+        android:layout_alignLeft="@id/navbar"
+        android:layout_alignTop="@id/navbar"
+        android:layout_alignBottom="@id/navbar"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="none"
+        android:src="@drawable/menu_lines" />
 
     <ImageView
         android:id="@+id/fireIcon"
         android:layout_width="24dp"
         android:layout_height="24dp"
+        android:layout_alignStart="@id/fire"
+        android:layout_alignLeft="@id/fire"
+        android:layout_alignTop="@id/fire"
+        android:layout_alignBottom="@id/fire"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:elevation="2dp"
+        android:outlineProvider="none"
         android:src="@drawable/fire"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.635"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/water"
-        app:layout_constraintVertical_bias="0.545" />
-
-    <ImageView
-        android:id="@+id/waterIcon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/water"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.328"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/water"
-        app:layout_constraintVertical_bias="0.545" />
+        android:tint="@color/white" />
 
     <ImageView
         android:id="@+id/earthIcon"
         android:layout_width="24dp"
         android:layout_height="24dp"
+        android:layout_alignStart="@id/earth"
+        android:layout_alignLeft="@id/earth"
+        android:layout_alignTop="@id/earth"
+        android:layout_alignBottom="@id/earth"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:elevation="2dp"
+        android:outlineProvider="none"
         android:src="@drawable/earth"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.191"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/water"
-        app:layout_constraintVertical_bias="0.534" />
+        android:tint="@color/white" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/airIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignStart="@id/air"
+        android:layout_alignLeft="@id/air"
+        android:layout_alignTop="@id/air"
+        android:layout_alignBottom="@id/air"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:elevation="2dp"
+        android:outlineProvider="none"
+        android:src="@drawable/air"
+        android:tint="@color/white" />
+
+    <ImageView
+        android:id="@+id/waterIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignStart="@id/water"
+        android:layout_alignLeft="@id/water"
+        android:layout_alignTop="@id/water"
+        android:layout_alignBottom="@id/water"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:elevation="2dp"
+        android:outlineProvider="none"
+        android:src="@drawable/water"
+        android:tint="@color/white" />
+
+</RelativeLayout>
