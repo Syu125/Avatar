@@ -44,7 +44,6 @@ public class Element {
     }
 
     public String getElementName(){
-        System.out.println("NAME: " + name);
         return name;
     }
 

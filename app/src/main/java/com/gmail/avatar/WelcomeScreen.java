@@ -145,9 +145,9 @@ public void openMenu(){
         }
     }
 
+
     public Element getElement(String name) {
         for (Element e : elements) {
-            System.out.println("NAME: " + e.getElementName());
             if (e.getElementName().equals(name))
                 return e;
         }
