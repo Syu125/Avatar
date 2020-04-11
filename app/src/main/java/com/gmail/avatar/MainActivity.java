@@ -18,7 +18,9 @@ private Timer timer;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CrunchifyTimer(10);
+        openMenu();
+
+       /* CrunchifyTimer(10);
 
         Intent intent = new Intent(this, WelcomeScreen.class);
         startActivity(intent);
@@ -35,7 +37,11 @@ private Timer timer;
         public void run(){
             System.out.println("Terminated");
             timer.cancel();
-        }
+        }*/
+    }
+    public void openMenu(){
+        Intent intent = new Intent(this, WelcomeScreen.class);
+        startActivity(intent);
     }
     }
 
