@@ -1,24 +1,16 @@
-Fire 5
-f1
-f2
-f3
-f4
-f5
-Water 5
-w1
-w2
-w3
-w4
-w5
-Earth 5
-e1
-e2
-e3
-e4
-e5
-Air 5
-a1
-a2
-a3
-a4
-a5
+ Fire 5
+ f1
+ f2
+ f3
+ Water 5
+ w1
+ w2
+ w3
+ Earth 5
+ e1
+ e2
+ e3
+ Air 5
+ a1
+ a2
+ a3
