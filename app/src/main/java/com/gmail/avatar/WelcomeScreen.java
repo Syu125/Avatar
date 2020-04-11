@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -28,6 +29,8 @@ public class WelcomeScreen extends AppCompatActivity {
     Element E_earth;
     Element E_air;
 
+    Button testB;
+
 
     LinearLayout linearLayout;
     ArrayList<CheckedTextView>ctvs;
@@ -47,6 +50,13 @@ public class WelcomeScreen extends AppCompatActivity {
         earthT = new ArrayList<String>();
         airT = new ArrayList<String>();
 
+        testB = findViewById(R.id.button);
+        testB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                syso
+            }
+        });
         linearLayout = findViewById(R.id.LinearLayout);
         ctvs =  new ArrayList<CheckedTextView>();
 
