@@ -22,7 +22,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.007" />
+        app:layout_constraintVertical_bias="0.635" />
 
     <Button
         android:id="@+id/fire"
@@ -30,12 +30,15 @@
         android:layout_height="48dp"
         android:background="#1A83DC"
         android:gravity="left"
-        android:text="              Fire"
+        android:text=" Fire"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="98dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.414" />
 
     <Button
         android:id="@+id/water"
@@ -54,13 +57,13 @@
         android:id="@+id/earth"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="236dp"
         android:background="#1A83DC"
         android:gravity="left"
         android:text="Earth"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fire" />
@@ -83,5 +86,63 @@
         app:layout_constraintTop_toBottomOf="@+id/earth"
         app:layout_constraintVertical_bias="0.0" />
 
+    <ImageView
+        android:id="@+id/goToPro"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/water"
+        app:layout_constraintVertical_bias="0.315" />
+
+    <ImageView
+        android:id="@+id/airIcon"
+    android:layout_width="24dp"
+    android:layout_height="24dp"
+    android:src="@drawable/air"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintHorizontal_bias="0.498"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/water" />
+
+    <ImageView
+        android:id="@+id/fireIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/fire"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.635"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/water"
+        app:layout_constraintVertical_bias="0.545" />
+
+    <ImageView
+        android:id="@+id/waterIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/water"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.328"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/water"
+        app:layout_constraintVertical_bias="0.545" />
+
+    <ImageView
+        android:id="@+id/earthIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/earth"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/water"
+        app:layout_constraintVertical_bias="0.534" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

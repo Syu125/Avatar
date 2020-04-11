@@ -19,7 +19,7 @@ ListView listview;
         super.onCreate(savedInstanceState);
         setContentView(com.gmail.avatar.R.layout.activity_welcome_screen);
 
-        listview = findViewById(R.id.selection);
+       // listview = findViewById(R.id.selection);
 
         ArrayList<String>selections =  new ArrayList<String>();
 String text = "";
