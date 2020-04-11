@@ -17,11 +17,17 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class WelcomeScreen extends AppCompatActivity {
     ArrayList<String> fireT;
     ArrayList<String> waterT;
     ArrayList<String> earthT;
     ArrayList<String> airT;
+    Element E_fire;
+    Element E_water;
+    Element E_earth;
+    Element E_air;
+
 
     LinearLayout linearLayout;
     ArrayList<CheckedTextView>ctvs;
@@ -64,6 +70,10 @@ public class WelcomeScreen extends AppCompatActivity {
         addTasks(earthT,3);
         addTasks(airT,3);
 
+        E_fire =  new Element(fireT);
+        E_water =  new Element(waterT);
+        E_earth =  new Element(earthT);
+        E_air =  new Element(airT);
 
     }
 
@@ -82,8 +92,26 @@ public class WelcomeScreen extends AppCompatActivity {
                 public void onClick(View v) {
                     ctv.setChecked(!ctv.isChecked());
                     ctv.setCheckMarkDrawable(ctv.isChecked()? android.R.drawable.checkbox_on_background : android.R.drawable.checkbox_off_background);
-
-
+                    for (String s: fireT) {
+                        if(ctv.getText().equals(s)){
+                            E_fire.addSelectedTask(E_fire.getTask(s));
+                        }
+                    }
+                    for (String s: waterT) {
+                        if(ctv.getText().equals(s)){
+                            E_water.addSelectedTask(E_water.getTask(s));
+                        }
+                    }
+                    for (String s: earthT) {
+                        if(ctv.getText().equals(s)){
+                            E_earth.addSelectedTask(E_earth.getTask(s));
+                        }
+                    }
+                    for (String s: airT) {
+                        if(ctv.getText().equals(s)){
+                            E_air.addSelectedTask(E_air.getTask(s));
+                        }
+                    }
 
                 }
             });
@@ -94,6 +122,7 @@ public class WelcomeScreen extends AppCompatActivity {
             at++;
         }
     }
+
 
 
 }

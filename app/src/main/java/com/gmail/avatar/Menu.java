@@ -13,4 +13,7 @@ public class Menu extends AppCompatActivity {
 
 
     }
+    public void addTasks(){
+
+    }
 }

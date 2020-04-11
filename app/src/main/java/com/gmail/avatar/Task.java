@@ -10,4 +10,7 @@ public class Task {
     public Task(String task){
         this.task = task;
     }
+    public String getTaskName(){
+        return task;
+    }
 }
