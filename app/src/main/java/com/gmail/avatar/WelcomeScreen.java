@@ -58,6 +58,24 @@ public class WelcomeScreen extends AppCompatActivity {
         testB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ArrayList<Task> temp = new ArrayList<Task>();
+                ArrayList<Task> get = new ArrayList<Task>();
+                get = E_fire.getSelectedTasks();
+                for(Task t: get){
+                    temp.add(t);
+                }
+                get = E_water.getSelectedTasks();
+                for(Task t: get){
+                    temp.add(t);
+                }
+                get = E_earth.getSelectedTasks();
+                for(Task t: get){
+                    temp.add(t);
+                }
+                get = E_air.getSelectedTasks();
+                for(Task t: get){
+                    temp.add(t);
+                }
                 openMenu();
             }
         });
@@ -154,7 +172,9 @@ public void openMenu(){
 
         return null;
     }
-
+public ArrayList<Element>getElements(){
+        return  elements;
+}
 
 }
 

@@ -30,6 +30,9 @@ public class Element {
         selected.add(t);
         System.out.println("Got task: " + t.getTaskName());
     }
+    public  ArrayList<Task> getSelectedTasks(){
+        return selected;
+    }
 
     public void addTask(String task) {
         tasks.add(task);

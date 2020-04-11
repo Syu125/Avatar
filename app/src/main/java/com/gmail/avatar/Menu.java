@@ -43,7 +43,6 @@ public class Menu extends AppCompatActivity {
     LinearLayout linearLayout;
     String[] vals;
     ArrayList<CheckedTextView> ctvs;
-    Menu m;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +57,6 @@ public class Menu extends AppCompatActivity {
 
         mainLayout = new LinearLayout(this);
 
-        m = new Menu();
 
         Button B_Fire = findViewById(R.id.fire);
         Button B_Water = findViewById(R.id.water);
