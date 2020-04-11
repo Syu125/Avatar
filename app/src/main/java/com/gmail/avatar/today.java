@@ -1,6 +1,7 @@
 package com.gmail.avatar;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +18,14 @@ public class today extends AppCompatActivity {
 //        ws = new WelcomeScreen();
 //        ws.getElements()
 
+        System.out.println(elements);
+        for(Element e: elements){
+            System.out.println("Name: " + e.getElementName());
+            ArrayList<Task> temp =  e.getSelectedTasks();
+            for(Task t: temp){
+                System.out.println(t.getTaskName());
+            }
+        }
     }
 
 }

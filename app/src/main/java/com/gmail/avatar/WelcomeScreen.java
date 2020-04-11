@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -36,6 +37,7 @@ public class WelcomeScreen extends AppCompatActivity {
     Element E_air;
 
     Button testB;
+
 
 
     LinearLayout linearLayout;
@@ -114,7 +116,9 @@ public class WelcomeScreen extends AppCompatActivity {
         elements.add(E_earth);
         elements.add(E_air);
 
-
+        Intent intent = new Intent(WelcomeScreen.this,today.class);
+        intent.putExtra("ElementList", elements);
+        startActivity(intent);
     }
     public void openToday(){
         Intent intent = new Intent(this, today.class);
@@ -200,6 +204,7 @@ public class WelcomeScreen extends AppCompatActivity {
         return null;
     }
 public ArrayList<Element>getElements(){
+
         return  elements;
 }
 

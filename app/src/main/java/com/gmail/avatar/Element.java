@@ -1,8 +1,12 @@
 package com.gmail.avatar;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Element {
+public class Element implements Parcelable {
     String name;
     ArrayList<String> tasks;
     ArrayList<Task> taskClass;
@@ -61,5 +65,15 @@ public class Element {
             s+="\n"+t;
         }
         return s;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }
