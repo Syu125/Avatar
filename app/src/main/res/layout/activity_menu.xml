@@ -12,20 +12,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/navbar"
-        android:background="@drawable/menu_bg"
+        android:background="@drawable/menu_lines"
         android:scaleType="centerCrop"
         android:src="@drawable/menu_bg" />
 
     <TextView
         android:id="@+id/navbar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="48dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_gravity="center_horizontal"
         android:background="@color/colorPrimary"
-        android:paddingTop="18dp"
+        android:paddingTop="15dp"
         android:text="AVATAR"
         android:textAlignment="center"
         android:textColor="@color/white"
