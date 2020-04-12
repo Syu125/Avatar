@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Element implements Parcelable {
+public class Element  {
     String name;
     ArrayList<String> tasks;
     ArrayList<Task> taskClass;
@@ -59,6 +59,12 @@ public class Element implements Parcelable {
             taskClass.add(new Task(s));
         }
     }
+    public void removeTask(Task t){
+        taskClass.remove(t);
+    }
+    public ArrayList<Task> getTasks(){
+        return taskClass;
+    }
     public String getTasksString(){
         String s = "";
         for (String t:tasks) {
@@ -67,13 +73,6 @@ public class Element implements Parcelable {
         return s;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
 
-    }
 }
