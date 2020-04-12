@@ -49,6 +49,8 @@ public class today extends AppCompatActivity {
     Element E_earth;
     Element E_air;
 
+    int countTasks = 0;
+
     Time time = new Time();
     MainActivity ma = new MainActivity();
     SharedPreferences.Editor editor;
@@ -137,13 +139,25 @@ public class today extends AppCompatActivity {
                 full_elements.add(e);
             }
             select_tasks = new ArrayList<>();
+
             for (Element e : full_elements) {
                 for (Task task : e.getFullTasks()) {
                     if (task_Settings.contains(task.getTaskName())) {
                         System.out.println("ADDED: " + (task.getTaskName()));
                         select_tasks.add(task);
                         e.addSelectedTask(task);
+                        countTasks++;
                     }
+                }
+            }
+            if(countTasks==0){
+                final TextView tv=new TextView(this);
+                tv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                tv.setGravity(Gravity.CENTER);
+                tv.setText("Good job avatar! Your mission for day is complete; go take a break!");
+                tv.setTextSize(40);
+                if (linearLayout != null) {
+                    linearLayout.addView(tv);
                 }
             }
         } else {
@@ -243,7 +257,16 @@ public class today extends AppCompatActivity {
                     editor = task_Settings.edit();
                     editor.remove(ta.getTaskName());
                     editor.commit();
-                    
+
+                    if(taskCompletedCount >= 3){
+                        countText.setText("Tier 1: " +String.valueOf(taskCompletedCount));
+                    }else if(taskCompletedCount >= 6){
+                        countText.setText("Tier 2: " +String.valueOf(taskCompletedCount));
+                    }else if(taskCompletedCount >= 9){
+                        countText.setText("Tier 3: " +String.valueOf(taskCompletedCount));
+                    }else if(taskCompletedCount == 12){
+                        countText.setText("Master: " +String.valueOf(taskCompletedCount));
+                    }
 
                 }
             }
