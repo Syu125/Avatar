@@ -86,16 +86,12 @@ public class today extends AppCompatActivity {
                 tasks_temp[i] =  tempTasks.get(i);
             }
             for(Task ta: tasks_temp){
-                if(ta.getTaskName().equals(t.getTaskName()){
+                if(ta.getTaskName().equals(t.getTaskName())) {
                     e.removeTask(ta);
+                }
             }
         }
-        for(Element e: elements){
-            ArrayList<Task>tempTasks = e.getTasks();
-            for(Task ta: tempTasks){
-                System.out.println(ta.getTaskName());
-            }
-        }
+
     }
 
 
