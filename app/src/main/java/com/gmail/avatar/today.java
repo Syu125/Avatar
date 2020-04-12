@@ -75,7 +75,7 @@ public class today extends AppCompatActivity {
 
         elements = WelcomeScreen.getElements();
         full_elements = WelcomeScreen.getElements();
-        System.out.println(elements);
+
         for (Element e : elements) {
             ArrayList<Task> temp = e.getSelectedTasks();
             for (final Task t : temp) {
@@ -112,19 +112,6 @@ public class today extends AppCompatActivity {
                         }
                     }
                 });
-                /*checkBox.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(checkBox.isChecked()){
-                            completedTask(t);
-                        }
-                        if(!checkBox.isChecked()){
-                            addTask(t);
-                        }
-                    }
-
-                });*/
-
                 checkBoxes.add(checkBox);
 
             }
@@ -136,6 +123,9 @@ public class today extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void importTasks(){
+
+    }
     public void completedTask(Task t) {
         Element[] elements_temp = new Element[elements.size()];
         for (int i = 0; i < elements.size(); i++) {
@@ -149,7 +139,7 @@ public class today extends AppCompatActivity {
             }
             for (Task ta : tasks_temp) {
                 if (ta.getTaskName().equals(t.getTaskName())) {
-                    taskCompletedCount++;
+                    taskCompletedCount= 0;
                     SharedPreferences settings1 = getSharedPreferences(PREFS_NAME, 0);
                     SharedPreferences.Editor editor = settings1.edit();
                     editor.putInt("count", taskCompletedCount);
