@@ -103,6 +103,7 @@ public class today extends AppCompatActivity {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if(checkBox.isChecked()) {
+                            System.out.println("CHECKED");
                             completedTask(t);
                         }
                         else {
@@ -138,7 +139,7 @@ public class today extends AppCompatActivity {
             }
             for (Task ta : tasks_temp) {
                 if (ta.getTaskName().equals(t.getTaskName())) {
-                    taskCompletedCount= 0;
+                    taskCompletedCount++;
                     SharedPreferences settings1 = getSharedPreferences(PREFS_NAME, 0);
                     SharedPreferences.Editor editor = settings1.edit();
                     editor.putInt("count", taskCompletedCount);
