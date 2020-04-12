@@ -27,11 +27,11 @@ import java.util.ArrayList;
 
 public class today extends AppCompatActivity {
     ArrayList<Element> elements = new ArrayList<>();
+    ArrayList<Element> full_elements = new ArrayList<>();
     ImageButton B_menu;
     ArrayList<CheckBox> checkBoxes;
     TextView countText;
     int taskCompletedCount = 0;
-    Time schedule;
     int day = 0;
     public static final String PREFS_NAME = "MyPrefsFile";
 
@@ -41,14 +41,12 @@ public class today extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_today);
 
-        schedule = new Time();
 
         checkBoxes = new ArrayList<CheckBox>();
 
         countText = findViewById(R.id.countDisplay);
         SharedPreferences settings1 = getSharedPreferences(PREFS_NAME, 0);
 
-        SharedPreferences settings2 = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
         /*SharedPreferences settings3 = getSharedPreferences(PREFS_NAME,2);
         SharedPreferences settings4 = getSharedPreferences(PREFS_NAME,3);*/
@@ -59,14 +57,7 @@ public class today extends AppCompatActivity {
         } else {
             taskCompletedCount = 0;
         }
-        if (settings2.contains("date")) {
-            System.out.println("change");
-            day = settings1.getInt("date", day);
 
-
-        } else {
-            day = 0;
-        }
 
         System.out.println(taskCompletedCount + " " + day);
         countText.setText(String.valueOf(taskCompletedCount));
@@ -83,7 +74,8 @@ public class today extends AppCompatActivity {
 
 
         elements = WelcomeScreen.getElements();
-        System.out.println(elements);
+        full_elements = WelcomeScreen.getElements();
+
         for (Element e : elements) {
             ArrayList<Task> temp = e.getSelectedTasks();
             for (final Task t : temp) {
@@ -107,10 +99,17 @@ public class today extends AppCompatActivity {
                 if (linearLayout != null) {
                     linearLayout.addView(checkBox);
                 }
-                checkBox.setOnClickListener(new View.OnClickListener() {
+                checkBox.setChecked(false);
+                checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
-                    public void onClick(View v) {
-                        completedTask(t);
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if(checkBox.isChecked()) {
+                            completedTask(t);
+                        }
+                        else {
+                            System.out.println("HIT");
+                            addTask(t);
+                        }
                     }
                 });
                 checkBoxes.add(checkBox);
@@ -124,6 +123,9 @@ public class today extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void importTasks(){
+
+    }
     public void completedTask(Task t) {
         Element[] elements_temp = new Element[elements.size()];
         for (int i = 0; i < elements.size(); i++) {
@@ -137,7 +139,7 @@ public class today extends AppCompatActivity {
             }
             for (Task ta : tasks_temp) {
                 if (ta.getTaskName().equals(t.getTaskName())) {
-                    taskCompletedCount++;
+                    taskCompletedCount= 0;
                     SharedPreferences settings1 = getSharedPreferences(PREFS_NAME, 0);
                     SharedPreferences.Editor editor = settings1.edit();
                     editor.putInt("count", taskCompletedCount);
@@ -148,6 +150,33 @@ public class today extends AppCompatActivity {
             }
         }
 
+    }
+    public void addTask(Task t) {
+        Element[] elements_temp = new Element[full_elements.size()];
+        for (int i = 0; i < full_elements.size(); i++) {
+            elements_temp[i] = full_elements.get(i);
+        }
+        for (Element e : elements_temp) {
+            ArrayList<Task> tempTasks = e.getFullTasks();
+            Task[] tasks_temp = new Task[tempTasks.size()];
+            for (int i = 0; i < tempTasks.size(); i++) {
+                tasks_temp[i] = tempTasks.get(i);
+            }
+            for (Task ta : tasks_temp) {
+                if (ta.getTaskName().equals(t.getTaskName())) {
+                    System.out.println("SUBTRACTED");
+                    taskCompletedCount--;
+                    SharedPreferences settings1 = getSharedPreferences(PREFS_NAME, 0);
+                    SharedPreferences.Editor editor = settings1.edit();
+                    editor.putInt("count", taskCompletedCount);
+                    editor.commit();
+                    countText.setText(String.valueOf(taskCompletedCount));
+                    e.addTask(t);
+                    e.setTaskClassEqual();
+                }
+            }
+        }
+    elements = full_elements;
     }
 
 

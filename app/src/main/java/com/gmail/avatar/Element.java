@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Element {
     SharedPreferences settings;
     ArrayList<String> tasks;
+    ArrayList<Task> full_taskClass;
     ArrayList<Task> taskClass;
     ArrayList<Task> selected;
     ArrayList<Task> done;
@@ -18,6 +19,7 @@ public class Element {
 
     public Element() {
         tasks = new ArrayList<String>();
+        full_taskClass = new ArrayList<Task>();
         taskClass = new ArrayList<Task>();
         done = new ArrayList<Task>();
         selected = new ArrayList<Task>();
@@ -25,7 +27,7 @@ public class Element {
 
     public Element(String name, ArrayList<String> t) {
 
-
+        full_taskClass = new ArrayList<Task>();
         tasks = new ArrayList<String>();
         taskClass = new ArrayList<Task>();
         done = new ArrayList<Task>();
@@ -63,17 +65,31 @@ public class Element {
     public void convertToTask() {
         for (String s : tasks) {
             taskClass.add(new Task(s));
+            full_taskClass.add(new Task(s));
         }
+    }
+    public void setTaskClassEqual(){
+        taskClass = new ArrayList<Task>();
+        for (Task t:full_taskClass) {
+            taskClass.add(t);
+        }
+
     }
 
     public void removeTask(Task t) {
         taskClass.remove(t);
-
+    }
+    public void addTask(Task t) {
+        taskClass.remove(t);
     }
 
     public ArrayList<Task> getTasks() {
         return taskClass;
     }
+    public ArrayList<Task> getFullTasks() {
+        return full_taskClass;
+    }
+
 
     public String getTasksString() {
         String s = "";
