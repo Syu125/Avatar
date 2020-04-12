@@ -1,16 +1,16 @@
- Fire 5
- f1
- f2
- f3
- Water 5
- w1
- w2
- w3
- Earth 5
- e1
- e2
- e3
- Air 5
- a1
- a2
- a3
+Fire 5
+Stay away from screens for an hour
+Defrost your food in the fridge, not with the microwave
+Don't use a hairdryer
+Water 5
+Do the dishes with your faucet off
+Turn the water off while brushing your teeth
+Finish showering in 3 minutes
+Earth 5
+Go for a walk
+Make a compost
+Pick up litter around your neighborhood
+Air 5
+Commute to lunch without your car
+Use cooking vents
+Schedule a carpool

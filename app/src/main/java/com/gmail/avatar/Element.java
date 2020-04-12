@@ -1,13 +1,20 @@
 package com.gmail.avatar;
 
+import android.content.SharedPreferences;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Element {
-    String name;
+    SharedPreferences settings;
     ArrayList<String> tasks;
     ArrayList<Task> taskClass;
     ArrayList<Task> selected;
     ArrayList<Task> done;
+    String name;
+
 
     public Element() {
         tasks = new ArrayList<String>();
@@ -17,6 +24,8 @@ public class Element {
     }
 
     public Element(String name, ArrayList<String> t) {
+
+
         tasks = new ArrayList<String>();
         taskClass = new ArrayList<Task>();
         done = new ArrayList<Task>();
@@ -30,7 +39,8 @@ public class Element {
         selected.add(t);
         System.out.println("Got task: " + t.getTaskName());
     }
-    public  ArrayList<Task> getSelectedTasks(){
+
+    public ArrayList<Task> getSelectedTasks() {
         return selected;
     }
 
@@ -46,7 +56,7 @@ public class Element {
         return null;
     }
 
-    public String getElementName(){
+    public String getElementName() {
         return name;
     }
 
@@ -55,11 +65,23 @@ public class Element {
             taskClass.add(new Task(s));
         }
     }
-    public String getTasksString(){
+
+    public void removeTask(Task t) {
+        taskClass.remove(t);
+
+    }
+
+    public ArrayList<Task> getTasks() {
+        return taskClass;
+    }
+
+    public String getTasksString() {
         String s = "";
-        for (String t:tasks) {
-            s+="\n"+t;
+        for (String t : tasks) {
+            s += "\n" + t;
         }
         return s;
     }
+
+
 }

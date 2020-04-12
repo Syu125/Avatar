@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,7 +30,7 @@ public class WelcomeScreen extends AppCompatActivity {
     ArrayList<String> earthT;
     ArrayList<String> airT;
 
-    ArrayList<Element> elements = new ArrayList<Element>();
+    private static ArrayList<Element> elements = new ArrayList<Element>();
     Element E_fire;
     Element E_water;
     Element E_earth;
@@ -38,12 +39,13 @@ public class WelcomeScreen extends AppCompatActivity {
     Button testB;
 
 
+
     LinearLayout linearLayout;
     ArrayList<CheckedTextView> ctvs;
 
     int num = 3;
     int result = 0;
-    int at = 1;
+    int at = 0;
     int size = 0;
     String[] vals;
 
@@ -97,7 +99,7 @@ public class WelcomeScreen extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        vals = text.split(" ");
+        vals = text.split("\n");
 
         addTasks(fireT, 3);
         addTasks(waterT, 3);
@@ -114,7 +116,6 @@ public class WelcomeScreen extends AppCompatActivity {
         elements.add(E_earth);
         elements.add(E_air);
 
-
     }
     public void openToday(){
         Intent intent = new Intent(this, today.class);
@@ -123,7 +124,7 @@ public class WelcomeScreen extends AppCompatActivity {
 
     int checkFinal = 1;
     public void addTasks(ArrayList<String> a, int n) {
-        at += 2;
+        at ++;
         for (int i = 0; i < n; i++) {
             a.add(vals[at]);
             final CheckedTextView ctv = new CheckedTextView(this);
@@ -199,7 +200,7 @@ public class WelcomeScreen extends AppCompatActivity {
 
         return null;
     }
-public ArrayList<Element>getElements(){
+public static ArrayList<Element>getElements(){
         return  elements;
 }
 
