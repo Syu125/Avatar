@@ -23,6 +23,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -30,21 +32,36 @@ public class today extends AppCompatActivity {
     ArrayList<Element> elements = new ArrayList<>();
     ArrayList<Element> full_elements = new ArrayList<>();
     ArrayList<Task> select_tasks = new ArrayList<>();
+    ArrayList<Task> full_tasks = new ArrayList<>();
     ImageButton B_menu;
     ArrayList<CheckBox> checkBoxes;
     TextView countText;
     int taskCompletedCount = 0;
     int day = 0;
+    int at = 0;
+    int size;
     public static final String PREFS_NAME = "MyPrefsFile";
     public static final String TASK_PREFS_NAME = "MyPrefsFile";
+    public static final String FULL_TASK_PREFS_NAME = "FullMyPrefsFile";
+    String[] vals;
+    Element E_fire;
+    Element E_water;
+    Element E_earth;
+    Element E_air;
 
-    Time time =  new Time();
+    Time time = new Time();
     MainActivity ma = new MainActivity();
     SharedPreferences.Editor editor;
     SharedPreferences task_Settings;
+    SharedPreferences full_task_settings;
     SharedPreferences settings;
     public static final String DAY_PREFS_NAME = "MyPrefsFile2";
 
+    WelcomeScreen ws = new WelcomeScreen();
+    ArrayList<String> fireT;
+    ArrayList<String> waterT;
+    ArrayList<String> earthT;
+    ArrayList<String> airT;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -52,16 +69,46 @@ public class today extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_today);
 
+        fireT = new ArrayList<String>();
+        waterT = new ArrayList<String>();
+        earthT = new ArrayList<String>();
+        airT = new ArrayList<String>();
+        String text = "";
+        try {
+            InputStream is = getAssets().open("tasks.txt");
+            size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            text = new String(buffer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        vals = text.split("\n");
+        addTasks(fireT, 3);
+        addTasks(waterT, 3);
+        addTasks(earthT, 3);
+        addTasks(airT, 3);
+
+        E_fire = new Element("fire", fireT);
+        E_water = new Element("water", waterT);
+        E_earth = new Element("earth", earthT);
+        E_air = new Element("air", airT);
+
+        elements.add(E_fire);
+        elements.add(E_water);
+        elements.add(E_earth);
+        elements.add(E_air);
+
+
         settings = getSharedPreferences(DAY_PREFS_NAME, 0);
         day = settings.getInt("date", day);
-        System.out.println("HIIII" + day);
         checkBoxes = new ArrayList<CheckBox>();
 
         countText = findViewById(R.id.countDisplay);
         SharedPreferences settings1 = getSharedPreferences(PREFS_NAME, 0);
         task_Settings = getSharedPreferences(TASK_PREFS_NAME, 0);
-
-
+        full_task_settings = getSharedPreferences(FULL_TASK_PREFS_NAME, Context.MODE_PRIVATE);
 
 
         if (settings1.contains("count")) {
@@ -71,7 +118,7 @@ public class today extends AppCompatActivity {
         }
 
 
-        System.out.println(taskCompletedCount + " " + day);
+        System.out.println(time.getDay() + " " + day);
         countText.setText(String.valueOf(taskCompletedCount));
 
         B_menu = findViewById(R.id.menuBtn);
@@ -84,37 +131,43 @@ public class today extends AppCompatActivity {
 
         LinearLayout linearLayout = findViewById(R.id.LinearLayout);
 
-        elements = WelcomeScreen.getElements();
-        full_elements = WelcomeScreen.getElements();
-        if(time.getDay()==day){
-            for(Element e: full_elements){
-                for(Task task: e.getFullTasks()){
-                    if(task_Settings.contains(task.getTaskName())){
+
+        if (time.getDay() == day) {
+            for (Element e : elements) {
+                full_elements.add(e);
+            }
+            select_tasks = new ArrayList<>();
+            for (Element e : full_elements) {
+                for (Task task : e.getFullTasks()) {
+                    if (task_Settings.contains(task.getTaskName())) {
+                        System.out.println("ADDED: " + (task.getTaskName()));
                         select_tasks.add(task);
+                        e.addSelectedTask(task);
                     }
                 }
             }
-        }else{
+        } else {
             elements = WelcomeScreen.getElements();
             full_elements = WelcomeScreen.getElements();
+            for (Element e : full_elements) {
+                for (Task task : e.getFullTasks()) {
+                    editor = full_task_settings.edit();
+                    editor.putString(task.getTaskName(), task.getTaskName());
+                    editor.commit();
+                }
+            }
         }
-       /* if(!ma.visited()){
-            elements = WelcomeScreen.getElements();
-            full_elements = WelcomeScreen.getElements();
-        }else{
-            for(Element e: full_elements){
-                for(Task task: e.getFullTasks()){
-                    if(task_Settings.contains(task.getTaskName())){
-                        select_tasks.add(task);
-                    }
-                }
-            }
-        }*/
+        day = time.getDay();
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("date", day);
+        System.out.println(day + " GOT DATE: " + settings.getInt("date", day));
+        editor.commit();
 
 
         for (Element e : elements) {
             ArrayList<Task> temp = e.getSelectedTasks();
             for (final Task t : temp) {
+                System.out.println("HAS THINGS");
                 select_tasks.add(t);
                 editor = task_Settings.edit();
                 editor.putString(t.getTaskName(), t.getTaskName());
@@ -179,7 +232,7 @@ public class today extends AppCompatActivity {
             }
             for (Task ta : tasks_temp) {
                 if (ta.getTaskName().equals(t.getTaskName())) {
-                    taskCompletedCount=0;
+                    taskCompletedCount++;
                     SharedPreferences settings1 = getSharedPreferences(PREFS_NAME, 0);
                     SharedPreferences.Editor editor = settings1.edit();
                     editor.putInt("count", taskCompletedCount);
@@ -187,12 +240,10 @@ public class today extends AppCompatActivity {
                     countText.setText(String.valueOf(taskCompletedCount));
                     e.removeTask(ta);
                     select_tasks.remove(ta);
-                    editor.clear();
-                    for (Task task : select_tasks) {
-                        editor = task_Settings.edit();
-                        editor.putString(t.getTaskName(), t.getTaskName());
-                        editor.commit();
-                    }
+                    editor = task_Settings.edit();
+                    editor.remove(ta.getTaskName());
+                    editor.commit();
+                    
 
                 }
             }
@@ -223,17 +274,22 @@ public class today extends AppCompatActivity {
                     e.addTask(t);
                     e.setTaskClassEqual();
                     select_tasks.add(t);
-                    editor.clear();
-                    for (Task task : select_tasks) {
-                        editor = task_Settings.edit();
-                        editor.putString(t.getTaskName(), t.getTaskName());
-                        editor.commit();
-                    }
+                    editor = task_Settings.edit();
+                    editor.putString(ta.getTaskName(), ta.getTaskName());
+                    editor.commit();
+
                 }
             }
         }
         elements = full_elements;
     }
 
+    public void addTasks(ArrayList<String> a, int n) {
+        at++;
+        for (int i = 0; i < n; i++) {
+            a.add(vals[at]);
+            at++;
+        }
 
+    }
 }

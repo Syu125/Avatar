@@ -43,6 +43,7 @@ public class Menu extends AppCompatActivity {
     LinearLayout linearLayout;
     String[] vals;
     ArrayList<CheckedTextView> ctvs;
+    DisplayElement ed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,30 @@ public class Menu extends AppCompatActivity {
 
         popUp = new PopupMenu(Menu.this,B_Fire);
 
+        B_Fire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ed = new DisplayElement(fireT);
+            }
+        });
+        B_Water.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ed = new DisplayElement(fireT);
+            }
+        });
+        B_Fire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ed = new DisplayElement(fireT);
+            }
+        });
+        B_Fire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ed = new DisplayElement(fireT);
+            }
+        });
 
         fireT = new ArrayList<String>();
         waterT = new ArrayList<String>();
