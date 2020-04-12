@@ -49,6 +49,7 @@ public class WelcomeScreen extends AppCompatActivity {
     int at = 0;
     int size = 0;
     String[] vals;
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,34 +66,26 @@ public class WelcomeScreen extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
-                int count = 0;
                 ArrayList<Task> temp = new ArrayList<Task>();
                 ArrayList<Task> get = new ArrayList<Task>();
                 get = E_fire.getSelectedTasks();
                 for(Task t: get){
-                    count++;
                     temp.add(t);
                 }
                 get = E_water.getSelectedTasks();
                 for(Task t: get){
-                    count++;
                     temp.add(t);
                 }
                 get = E_earth.getSelectedTasks();
                 for(Task t: get){
-                    count++;
                     temp.add(t);
                 }
                 get = E_air.getSelectedTasks();
                 for(Task t: get){
-                    count++;
                     temp.add(t);
                 }
                 if(count >= 3){
-                    testB.setBackgroundTintList(getResources().getColorStateList(R.color.colorPrimaryDark));
                     openToday();
-                }else{
-                    testB.setBackgroundTintList(getResources().getColorStateList(R.color.colorDisabled));
                 }
 
             }
@@ -130,6 +123,16 @@ public class WelcomeScreen extends AppCompatActivity {
         elements.add(E_air);
 
     }
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void checkSelected(int n){
+        Button submitBtn = findViewById(R.id.button);
+        if(n >= 3){
+            submitBtn.setBackgroundTintList(getResources().getColorStateList(R.color.colorPrimary));
+        }else{
+            submitBtn.setBackgroundTintList(getResources().getColorStateList(R.color.colorDisabled));
+        }
+    }
+
     public void openToday(){
         Intent intent = new Intent(this, today.class);
         startActivity(intent);
@@ -167,10 +170,13 @@ public class WelcomeScreen extends AppCompatActivity {
                     ctv.setChecked(!ctv.isChecked());
                     ctv.setCheckMarkDrawable(ctv.isChecked() ? android.R.drawable.checkbox_on_background : android.R.drawable.checkbox_off_background);
                     if (ctv.isChecked()) {
+                        count++;
                         ctv.setBackgroundResource(R.drawable.border_selected);
                     } else {
+                        count--;
                         ctv.setBackgroundResource(R.drawable.border);
                     }
+                    checkSelected(count);
 
                     // Checks Tasks
                     for (String s : fireT) {

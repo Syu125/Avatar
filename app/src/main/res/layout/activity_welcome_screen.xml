@@ -14,6 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
         android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/colorDisabled"
         android:gravity="center"
         android:text="Start my day!"
         android:textStyle="bold"
