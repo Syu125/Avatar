@@ -31,7 +31,6 @@ public class today extends AppCompatActivity {
     ArrayList<CheckBox> checkBoxes;
     TextView countText;
     int taskCompletedCount = 0;
-    Time schedule;
     int day = 0;
     public static final String PREFS_NAME = "MyPrefsFile";
 
@@ -41,14 +40,12 @@ public class today extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_today);
 
-        schedule = new Time();
 
         checkBoxes = new ArrayList<CheckBox>();
 
         countText = findViewById(R.id.countDisplay);
         SharedPreferences settings1 = getSharedPreferences(PREFS_NAME, 0);
 
-        SharedPreferences settings2 = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
         /*SharedPreferences settings3 = getSharedPreferences(PREFS_NAME,2);
         SharedPreferences settings4 = getSharedPreferences(PREFS_NAME,3);*/
@@ -59,14 +56,7 @@ public class today extends AppCompatActivity {
         } else {
             taskCompletedCount = 0;
         }
-        if (settings2.contains("date")) {
-            System.out.println("change");
-            day = settings1.getInt("date", day);
 
-
-        } else {
-            day = 0;
-        }
 
         System.out.println(taskCompletedCount + " " + day);
         countText.setText(String.valueOf(taskCompletedCount));
@@ -137,7 +127,7 @@ public class today extends AppCompatActivity {
             }
             for (Task ta : tasks_temp) {
                 if (ta.getTaskName().equals(t.getTaskName())) {
-                    taskCompletedCount++;
+                    taskCompletedCount=0;
                     SharedPreferences settings1 = getSharedPreferences(PREFS_NAME, 0);
                     SharedPreferences.Editor editor = settings1.edit();
                     editor.putInt("count", taskCompletedCount);
