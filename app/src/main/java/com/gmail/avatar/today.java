@@ -24,16 +24,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class today extends AppCompatActivity {
     ArrayList<Element> elements = new ArrayList<>();
     ArrayList<Element> full_elements = new ArrayList<>();
+    ArrayList<Task> select_tasks = new ArrayList<>();
     ImageButton B_menu;
     ArrayList<CheckBox> checkBoxes;
     TextView countText;
     int taskCompletedCount = 0;
     int day = 0;
     public static final String PREFS_NAME = "MyPrefsFile";
+    public static final String TASK_PREFS_NAME = "MyPrefsFile";
+
+    Time time =  new Time();
+    MainActivity ma = new MainActivity();
+    SharedPreferences.Editor editor;
+    SharedPreferences task_Settings;
+    SharedPreferences settings;
+    public static final String DAY_PREFS_NAME = "MyPrefsFile2";
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -41,15 +52,16 @@ public class today extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_today);
 
-
+        settings = getSharedPreferences(DAY_PREFS_NAME, 0);
+        day = settings.getInt("date", day);
+        System.out.println("HIIII" + day);
         checkBoxes = new ArrayList<CheckBox>();
 
         countText = findViewById(R.id.countDisplay);
         SharedPreferences settings1 = getSharedPreferences(PREFS_NAME, 0);
+        task_Settings = getSharedPreferences(TASK_PREFS_NAME, 0);
 
 
-        /*SharedPreferences settings3 = getSharedPreferences(PREFS_NAME,2);
-        SharedPreferences settings4 = getSharedPreferences(PREFS_NAME,3);*/
 
 
         if (settings1.contains("count")) {
@@ -72,14 +84,41 @@ public class today extends AppCompatActivity {
 
         LinearLayout linearLayout = findViewById(R.id.LinearLayout);
 
-
         elements = WelcomeScreen.getElements();
         full_elements = WelcomeScreen.getElements();
+        if(time.getDay()==day){
+            for(Element e: full_elements){
+                for(Task task: e.getFullTasks()){
+                    if(task_Settings.contains(task.getTaskName())){
+                        select_tasks.add(task);
+                    }
+                }
+            }
+        }else{
+            elements = WelcomeScreen.getElements();
+            full_elements = WelcomeScreen.getElements();
+        }
+       /* if(!ma.visited()){
+            elements = WelcomeScreen.getElements();
+            full_elements = WelcomeScreen.getElements();
+        }else{
+            for(Element e: full_elements){
+                for(Task task: e.getFullTasks()){
+                    if(task_Settings.contains(task.getTaskName())){
+                        select_tasks.add(task);
+                    }
+                }
+            }
+        }*/
+
 
         for (Element e : elements) {
             ArrayList<Task> temp = e.getSelectedTasks();
             for (final Task t : temp) {
-
+                select_tasks.add(t);
+                editor = task_Settings.edit();
+                editor.putString(t.getTaskName(), t.getTaskName());
+                editor.commit();
                 // Create Checkbox Dynamically
                 final CheckBox checkBox = new CheckBox(this);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -102,16 +141,16 @@ public class today extends AppCompatActivity {
                 checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if(checkBox.isChecked()) {
+                        if (checkBox.isChecked()) {
                             System.out.println("CHECKED");
                             completedTask(t);
-                        }
-                        else {
+                        } else {
                             System.out.println("HIT");
                             addTask(t);
                         }
                     }
                 });
+
                 checkBoxes.add(checkBox);
 
             }
@@ -123,9 +162,10 @@ public class today extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void importTasks(){
+    public void importTasks() {
 
     }
+
     public void completedTask(Task t) {
         Element[] elements_temp = new Element[elements.size()];
         for (int i = 0; i < elements.size(); i++) {
@@ -139,18 +179,27 @@ public class today extends AppCompatActivity {
             }
             for (Task ta : tasks_temp) {
                 if (ta.getTaskName().equals(t.getTaskName())) {
-                    taskCompletedCount++;
+                    taskCompletedCount=0;
                     SharedPreferences settings1 = getSharedPreferences(PREFS_NAME, 0);
                     SharedPreferences.Editor editor = settings1.edit();
                     editor.putInt("count", taskCompletedCount);
                     editor.commit();
                     countText.setText(String.valueOf(taskCompletedCount));
                     e.removeTask(ta);
+                    select_tasks.remove(ta);
+                    editor.clear();
+                    for (Task task : select_tasks) {
+                        editor = task_Settings.edit();
+                        editor.putString(t.getTaskName(), t.getTaskName());
+                        editor.commit();
+                    }
+
                 }
             }
         }
 
     }
+
     public void addTask(Task t) {
         Element[] elements_temp = new Element[full_elements.size()];
         for (int i = 0; i < full_elements.size(); i++) {
@@ -173,10 +222,17 @@ public class today extends AppCompatActivity {
                     countText.setText(String.valueOf(taskCompletedCount));
                     e.addTask(t);
                     e.setTaskClassEqual();
+                    select_tasks.add(t);
+                    editor.clear();
+                    for (Task task : select_tasks) {
+                        editor = task_Settings.edit();
+                        editor.putString(t.getTaskName(), t.getTaskName());
+                        editor.commit();
+                    }
                 }
             }
         }
-    elements = full_elements;
+        elements = full_elements;
     }
 
 

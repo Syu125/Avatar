@@ -19,7 +19,11 @@ public class MainActivity extends AppCompatActivity {
     private final int SPLASH_DISPLAY_LENGTH = 1000;
     Time schedule;
     public static final String PREFS_NAME = "MyPrefsFile2";
+    public static final String VISIT_PREFS_NAME = "MyVisitPrefsFile2";
     int day = 10;
+    SharedPreferences settings;
+    SharedPreferences visit_settings;;
+    int visited = 0; //0 false, 1 true
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +33,11 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("BEFORE: " +day);
         day = schedule.getDay();
         System.out.println("AFTER: " + day);
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        settings = getSharedPreferences(PREFS_NAME, 0);
+        visit_settings = getSharedPreferences(PREFS_NAME, 0);
 
+        visited =  visit_settings.getInt("visited", visited);
         if (settings.contains("date")) {
-            System.out.println(settings.getInt("date",day));
             if(day != settings.getInt("date", day)){
                 new Handler().postDelayed(new Runnable(){
                     @Override
@@ -41,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
                         Intent mainIntent = new Intent(MainActivity.this,WelcomeScreen.class);
                         MainActivity.this.startActivity(mainIntent);
                         MainActivity.this.finish();
+                        visited = 0;
+                        SharedPreferences.Editor editor = visit_settings.edit();
+                        editor.putInt("visited", visited);
+                        editor.commit();
                     }
                 }, SPLASH_DISPLAY_LENGTH);
             }else{
@@ -51,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
                         Intent mainIntent = new Intent(MainActivity.this,today.class);
                         MainActivity.this.startActivity(mainIntent);
                         MainActivity.this.finish();
+                        visited = 1;
+                        SharedPreferences.Editor editor = visit_settings.edit();
+                        editor.putInt("visited", visited);
+                        editor.commit();
                     }
                 }, SPLASH_DISPLAY_LENGTH);
             }
@@ -63,34 +76,28 @@ public class MainActivity extends AppCompatActivity {
                     Intent mainIntent = new Intent(MainActivity.this,WelcomeScreen.class);
                     MainActivity.this.startActivity(mainIntent);
                     MainActivity.this.finish();
+                    visited = 1;
+                    SharedPreferences.Editor editor = visit_settings.edit();
+                    editor.putInt("visited", visited);
+                    editor.commit();
                 }
             }, SPLASH_DISPLAY_LENGTH);
         }
+        System.out.println("GETTT: " + visited);
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("date", day);
         editor.commit();
 
-        //openMenu();
-
-       /* CrunchifyTimer(10);
-
-        Intent intent = new Intent(this, WelcomeScreen.class);
-        startActivity(intent);
-
 
     }
-    public void CrunchifyTimer(int seconds){
-      timer =  new Timer();
-        timer.schedule(new NextTask(), seconds * 1000);
-    }
-
-    class NextTask extends  TimerTask{
-        @Override
-        public void run(){
-            System.out.println("Terminated");
-            timer.cancel();
-        }*/
-    }
+    /*public boolean visited(){
+        visit_settings = getSharedPreferences(PREFS_NAME, 0);
+        int i  = visit_settings.getInt("visited",visited);
+        if(i == 0){
+            return false;
+        }
+        return true;
+    }*/
     public void openMenu(){
         Intent intent = new Intent(this, WelcomeScreen.class);
         startActivity(intent);
