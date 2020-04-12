@@ -6,4 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".DisplayElement">
 
+    <LinearLayout
+        android:id="@+id/rootLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="70dp">
+
+
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/menuBtnn"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="#000000"
+        android:src="@drawable/menu_lines" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

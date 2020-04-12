@@ -30,7 +30,7 @@ public class Menu extends AppCompatActivity {
 
     int num = 3;
     int result = 0;
-    int at = 1;
+    int at = 0;
     int size = 0;
     Element E_fire;
     Element E_water;
@@ -66,32 +66,8 @@ public class Menu extends AppCompatActivity {
         Button B_Today = findViewById(R.id.today);
         ImageButton B_menu = findViewById(R.id.menuBtn);
 
-        popUp = new PopupMenu(Menu.this,B_Fire);
+        popUp = new PopupMenu(Menu.this, B_Fire);
 
-        B_Fire.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ed = new DisplayElement(fireT);
-            }
-        });
-        B_Water.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ed = new DisplayElement(fireT);
-            }
-        });
-        B_Fire.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ed = new DisplayElement(fireT);
-            }
-        });
-        B_Fire.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ed = new DisplayElement(fireT);
-            }
-        });
 
         fireT = new ArrayList<String>();
         waterT = new ArrayList<String>();
@@ -108,7 +84,7 @@ public class Menu extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        vals = text.split(" ");
+        vals = text.split("\n");
 
         addTasks(fireT, 3);
         addTasks(waterT, 3);
@@ -125,27 +101,31 @@ public class Menu extends AppCompatActivity {
         elements.add(E_earth);
         elements.add(E_air);
 
+
         B_Fire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openElementTasks("fire");
+                openDisplayElement();
             }
         });
         B_Water.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                openDisplayElementW();
 
             }
         });
         B_Earth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                openDisplayElementE();
 
             }
         });
         B_Air.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                openDisplayElementA();
 
             }
         });
@@ -169,66 +149,45 @@ public class Menu extends AppCompatActivity {
     }
 
 
-
-
     public void openElementTasks(String name) {
         String s = "";
-        for(Element e: elements){
-            if(e.getElementName().equals(name)){
+        for (Element e : elements) {
+            if (e.getElementName().equals(name)) {
                 s = e.getTasksString();
             }
         }
         TextView tv = new TextView(this);
-       // System.out.println("OUT: " + s);
+        // System.out.println("OUT: " + s);
 
         tv.setText(s);
         popUp.show();
     }
 
     public void addTasks(ArrayList<String> a, int n) {
-        at += 2;
+        at++;
         for (int i = 0; i < n; i++) {
             a.add(vals[at]);
-            final CheckedTextView ctv = new CheckedTextView(this);
-            ctv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            ctv.setWidth(1200);
-            ctv.setText(vals[at]);
-            ctv.setChecked(false);
-            ctv.setCheckMarkDrawable(android.R.drawable.checkbox_off_background);
-            ctv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ctv.setChecked(!ctv.isChecked());
-                    ctv.setCheckMarkDrawable(ctv.isChecked() ? android.R.drawable.checkbox_on_background : android.R.drawable.checkbox_off_background);
-                    for (String s : fireT) {
-                        if (ctv.getText().equals(s)) {
-                            E_fire.addSelectedTask(E_fire.getTask(s));
-                        }
-                    }
-                    for (String s : waterT) {
-                        if (ctv.getText().equals(s)) {
-                            E_water.addSelectedTask(E_water.getTask(s));
-                        }
-                    }
-                    for (String s : earthT) {
-                        if (ctv.getText().equals(s)) {
-                            E_earth.addSelectedTask(E_earth.getTask(s));
-                        }
-                    }
-                    for (String s : airT) {
-                        if (ctv.getText().equals(s)) {
-                            E_air.addSelectedTask(E_air.getTask(s));
-                        }
-                    }
 
-                }
-            });
-            if (linearLayout != null) {
-                linearLayout.addView(ctv);
-            }
-            ctvs.add(ctv);
             at++;
         }
 
+
+    }
+
+    public void openDisplayElement() {
+        Intent i = new Intent(this, DisplayElement.class);
+        startActivity(i);
+    }
+    public void openDisplayElementA() {
+        Intent i = new Intent(this, DisplayElementA.class);
+        startActivity(i);
+    }
+    public void openDisplayElementE() {
+        Intent i = new Intent(this, DisplayElementE.class);
+        startActivity(i);
+    }
+    public void openDisplayElementW() {
+        Intent i = new Intent(this, DisplayElementW.class);
+        startActivity(i);
     }
 }

@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".DisplayElement"></activity>
+        <activity android:name=".DisplayElementA"></activity>
+
+        <activity android:name=".DisplayElementW"></activity>
+        <activity android:name=".DisplayElementE"></activity>
+
         <activity android:name=".profile" />
         <activity android:name=".WelcomeScreen" />
         <activity android:name=".Menu" />
