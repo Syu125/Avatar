@@ -1,7 +1,7 @@
 # Avatar
 An app that drives, educates, and challenges everyday people to master their control of the environmental elements. Pushing for environmental sustainability one action at a time.
 
-## Project Design
+## Project Concept
 
 ![design1](design/presentation/design1.jpg)
 ![design2](design/presentation/design2.jpg)
