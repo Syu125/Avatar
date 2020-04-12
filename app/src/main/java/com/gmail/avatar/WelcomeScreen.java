@@ -113,10 +113,10 @@ public class WelcomeScreen extends AppCompatActivity {
 
 
     }
-public void openMenu(){
-        Intent intent = new Intent(this, Menu.class);
+    public void openToday(){
+        Intent intent = new Intent(this, today.class);
         startActivity(intent);
-}
+    }
     public void addTasks(ArrayList<String> a, int n) {
         at += 2;
         for (int i = 0; i < n; i++) {
