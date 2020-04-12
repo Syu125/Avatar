@@ -4,7 +4,6 @@
     <color name="colorPrimaryDark">#555555</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="white">#FFFFFF</color>
-    <color name="none">#00000000</color>
 
     <!-- Elements -->
     <color name="firePrimary">#B92121</color>

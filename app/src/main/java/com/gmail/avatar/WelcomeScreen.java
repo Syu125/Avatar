@@ -76,7 +76,7 @@ public class WelcomeScreen extends AppCompatActivity {
                 for(Task t: get){
                     temp.add(t);
                 }
-                openToday();
+                openMenu();
             }
         });
         linearLayout = findViewById(R.id.LinearLayout);
@@ -113,8 +113,8 @@ public class WelcomeScreen extends AppCompatActivity {
 
 
     }
-public void openToday(){
-        Intent intent = new Intent(this, today.class);
+public void openMenu(){
+        Intent intent = new Intent(this, Menu.class);
         startActivity(intent);
 }
     public void addTasks(ArrayList<String> a, int n) {

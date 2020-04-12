@@ -7,7 +7,7 @@
     tools:context=".profile">
 
     <TextView
-        android:id="@+id/welcomeTextView"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="#2699FB"

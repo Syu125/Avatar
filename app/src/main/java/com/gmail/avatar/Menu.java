@@ -166,9 +166,8 @@ public class Menu extends AppCompatActivity {
             a.add(vals[at]);
             final CheckedTextView ctv = new CheckedTextView(this);
             ctv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            ctv.setHeight(300);
-            ctv.setBackgroundColor(this.getResources().getColor(R.color.fireAccent));
-            ctv.setText("hello, world!");
+            ctv.setWidth(1200);
+            ctv.setText(vals[at]);
             ctv.setChecked(false);
             ctv.setCheckMarkDrawable(android.R.drawable.checkbox_off_background);
             ctv.setOnClickListener(new View.OnClickListener() {
