@@ -1,9 +1,12 @@
 package com.gmail.avatar;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -117,21 +120,38 @@ public class WelcomeScreen extends AppCompatActivity {
         Intent intent = new Intent(this, today.class);
         startActivity(intent);
     }
+
     public void addTasks(ArrayList<String> a, int n) {
         at += 2;
         for (int i = 0; i < n; i++) {
             a.add(vals[at]);
             final CheckedTextView ctv = new CheckedTextView(this);
             ctv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            ctv.setWidth(1200);
+            ctv.setWidth(1500);
+            ctv.setGravity(Gravity.CENTER_VERTICAL);
+            ctv.setHeight(1000);
+            ctv.setTextSize((float) 20);
+            ctv.setBackgroundResource(R.drawable.border);
+            ctv.setTextColor(this.getResources().getColor(R.color.colorPrimaryDark));
             ctv.setText(vals[at]);
             ctv.setChecked(false);
             ctv.setCheckMarkDrawable(android.R.drawable.checkbox_off_background);
+            // TODO: Find a way to increase the final element's padding in the layout
+            ctv.setPadding(270, 80, 80, 0);
+
             ctv.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
                     ctv.setChecked(!ctv.isChecked());
                     ctv.setCheckMarkDrawable(ctv.isChecked() ? android.R.drawable.checkbox_on_background : android.R.drawable.checkbox_off_background);
+                    if (ctv.isChecked()) {
+                        ctv.setBackgroundResource(R.drawable.border_selected);
+                    } else {
+                        ctv.setBackgroundResource(R.drawable.border);
+                    }
+
+                    // Checks Tasks
                     for (String s : fireT) {
                         if (ctv.getText().equals(s)) {
                             E_fire.addSelectedTask(E_fire.getTask(s));

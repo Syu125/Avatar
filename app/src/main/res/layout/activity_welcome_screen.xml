@@ -36,20 +36,20 @@
     <TextView
         android:id="@+id/directionsTextView"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="80dp"
         android:layout_below="@id/welcomeTextView"
+        android:background="@drawable/border"
         android:gravity="center"
-        android:text="Select 3 missions to complete today!"
+        android:text="Select at least 3 missions\nto complete today:"
         android:textAlignment="center"
         android:textSize="20dp" />
 
     <ScrollView
         android:id="@+id/ScrollView01"
         android:layout_width="fill_parent"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
         android:layout_above="@id/button"
         android:layout_below="@id/directionsTextView"
-        android:layout_marginTop="24dp"
         android:layout_marginBottom="32dp">
 
         <LinearLayout
