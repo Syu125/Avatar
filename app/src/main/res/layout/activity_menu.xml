@@ -124,8 +124,6 @@
         android:layout_alignBottom="@id/fire"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:elevation="2dp"
-        android:outlineProvider="none"
         android:src="@drawable/fire"
         android:tint="@color/white" />
 
@@ -139,8 +137,6 @@
         android:layout_alignBottom="@id/earth"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:elevation="2dp"
-        android:outlineProvider="none"
         android:src="@drawable/earth"
         android:tint="@color/white" />
 
@@ -154,8 +150,6 @@
         android:layout_alignBottom="@id/air"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:elevation="2dp"
-        android:outlineProvider="none"
         android:src="@drawable/air"
         android:tint="@color/white" />
 
@@ -169,8 +163,6 @@
         android:layout_alignBottom="@id/water"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:elevation="2dp"
-        android:outlineProvider="none"
         android:src="@drawable/water"
         android:tint="@color/white" />
 

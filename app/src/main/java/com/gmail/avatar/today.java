@@ -154,8 +154,16 @@ public class today extends AppCompatActivity {
                 final TextView tv=new TextView(this);
                 tv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 tv.setGravity(Gravity.CENTER);
-                tv.setText("Good job avatar! Your mission for day is complete; go take a break!");
-                tv.setTextSize(40);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                params.setMargins(40, 20, 40, 20);
+                tv.setLayoutParams(params);
+                tv.setBackgroundResource(R.drawable.rounded_button);
+                tv.setBackgroundTintList(getResources().getColorStateList(R.color.white));
+                tv.setText("Good job Avatar! Your mission for day is complete; go take a break!\n\nFor more tasks to complete, check out the list of tasks in the side menu.");
+                tv.setPadding(50, 80, 50, 80);
+                tv.setTextColor(this.getResources().getColor(R.color.colorPrimaryDark));
+                tv.setElevation(20);
+                tv.setTextSize(24);
                 if (linearLayout != null) {
                     linearLayout.addView(tv);
                 }
@@ -196,6 +204,7 @@ public class today extends AppCompatActivity {
                 checkBox.setTextColor(getResources().getColorStateList(R.color.colorPrimaryDark));
                 checkBox.setWidth(1300);
                 checkBox.setHeight(250);
+                checkBox.setElevation(20);
                 checkBox.setBackgroundResource(R.drawable.rounded_button);
                 checkBox.setBackgroundTintList(getResources().getColorStateList(R.color.white));
                 checkBox.setGravity(Gravity.CENTER_VERTICAL);
