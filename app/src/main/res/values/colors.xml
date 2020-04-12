@@ -6,6 +6,7 @@
     <color name="white">#FFFFFF</color>
     <color name="none">#00000000</color>
     <color name="offWhite">#ECECEC</color>
+    <color name="colorDisabled">#555555</color>
 
     <!-- Elements -->
     <color name="firePrimary">#B92121</color>

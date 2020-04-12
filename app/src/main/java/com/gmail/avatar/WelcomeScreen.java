@@ -62,6 +62,7 @@ public class WelcomeScreen extends AppCompatActivity {
 
         testB = findViewById(R.id.button);
         testB.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
                 int count = 0;
@@ -88,9 +89,10 @@ public class WelcomeScreen extends AppCompatActivity {
                     temp.add(t);
                 }
                 if(count >= 3){
+                    testB.setBackgroundTintList(getResources().getColorStateList(R.color.colorPrimaryDark));
                     openToday();
                 }else{
-                    testB.setBackgroundTintList(Color.GRAY);
+                    testB.setBackgroundTintList(getResources().getColorStateList(R.color.colorDisabled));
                 }
 
             }
