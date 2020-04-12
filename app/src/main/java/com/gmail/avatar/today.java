@@ -81,9 +81,8 @@ public class today extends AppCompatActivity {
             for (final Task t : temp) {
 
                 // Create Checkbox Dynamically
-                CheckBox checkBox = new CheckBox(this);
+                final CheckBox checkBox = new CheckBox(this);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-//                checkBox.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 params.setMargins(40, 20, 40, 20);
                 checkBox.setLayoutParams(params);
                 checkBox.setText(t.getTaskName());
