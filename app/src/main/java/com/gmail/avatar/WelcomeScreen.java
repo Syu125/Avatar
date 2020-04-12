@@ -140,7 +140,7 @@ public class WelcomeScreen extends AppCompatActivity {
 
             if (checkFinal == vals.length - 9) {
                 // TODO: THIS CODE MAY NO LONGER WORK AS THINGS ARE ADDED.
-                ctv.setPadding(80, 80, 80, 50);
+                ctv.setPadding(80, 80, 80, 80);
             } else {
                 ctv.setPadding(80, 80, 80, 0);
                 checkFinal++;
