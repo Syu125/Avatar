@@ -121,6 +121,7 @@ public class WelcomeScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
+    int checkFinal = 1;
     public void addTasks(ArrayList<String> a, int n) {
         at += 2;
         for (int i = 0; i < n; i++) {
@@ -136,8 +137,14 @@ public class WelcomeScreen extends AppCompatActivity {
             ctv.setText(vals[at]);
             ctv.setChecked(false);
             ctv.setCheckMarkDrawable(android.R.drawable.checkbox_off_background);
-            // TODO: Find a way to increase the final element's padding in the layout
-            ctv.setPadding(270, 80, 80, 0);
+
+            if (checkFinal == vals.length - 9) {
+                // TODO: THIS CODE MAY NO LONGER WORK AS THINGS ARE ADDED.
+                ctv.setPadding(80, 80, 80, 50);
+            } else {
+                ctv.setPadding(80, 80, 80, 0);
+                checkFinal++;
+            }
 
             ctv.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
