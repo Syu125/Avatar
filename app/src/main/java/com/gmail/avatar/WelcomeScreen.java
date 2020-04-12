@@ -30,7 +30,7 @@ public class WelcomeScreen extends AppCompatActivity {
     ArrayList<String> earthT;
     ArrayList<String> airT;
 
-    ArrayList<Element> elements = new ArrayList<Element>();
+    private static ArrayList<Element> elements = new ArrayList<Element>();
     Element E_fire;
     Element E_water;
     Element E_earth;
@@ -116,9 +116,6 @@ public class WelcomeScreen extends AppCompatActivity {
         elements.add(E_earth);
         elements.add(E_air);
 
-        Intent intent = new Intent(WelcomeScreen.this,today.class);
-        intent.putExtra("ElementList", elements);
-        startActivity(intent);
     }
     public void openToday(){
         Intent intent = new Intent(this, today.class);
@@ -203,8 +200,7 @@ public class WelcomeScreen extends AppCompatActivity {
 
         return null;
     }
-public ArrayList<Element>getElements(){
-
+public static ArrayList<Element>getElements(){
         return  elements;
 }
 
