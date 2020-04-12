@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -63,25 +64,35 @@ public class WelcomeScreen extends AppCompatActivity {
         testB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int count = 0;
                 ArrayList<Task> temp = new ArrayList<Task>();
                 ArrayList<Task> get = new ArrayList<Task>();
                 get = E_fire.getSelectedTasks();
                 for(Task t: get){
+                    count++;
                     temp.add(t);
                 }
                 get = E_water.getSelectedTasks();
                 for(Task t: get){
+                    count++;
                     temp.add(t);
                 }
                 get = E_earth.getSelectedTasks();
                 for(Task t: get){
+                    count++;
                     temp.add(t);
                 }
                 get = E_air.getSelectedTasks();
                 for(Task t: get){
+                    count++;
                     temp.add(t);
                 }
-                openToday();
+                if(count >= 3){
+                    openToday();
+                }else{
+                    testB.setBackgroundTintList(Color.GRAY);
+                }
+
             }
         });
         linearLayout = findViewById(R.id.LinearLayout);
