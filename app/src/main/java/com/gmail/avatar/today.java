@@ -81,7 +81,7 @@ public class today extends AppCompatActivity {
             for (final Task t : temp) {
 
                 // Create Checkbox Dynamically
-                CheckBox checkBox = new CheckBox(this);
+                final CheckBox checkBox = new CheckBox(this);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 //                checkBox.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 params.setMargins(40, 20, 40, 20);
@@ -104,6 +104,7 @@ public class today extends AppCompatActivity {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if(checkBox.isChecked()) {
+                            System.out.println("CHECKED");
                             completedTask(t);
                         }
                         else {
@@ -139,7 +140,7 @@ public class today extends AppCompatActivity {
             }
             for (Task ta : tasks_temp) {
                 if (ta.getTaskName().equals(t.getTaskName())) {
-                    taskCompletedCount= 0;
+                    taskCompletedCount++;
                     SharedPreferences settings1 = getSharedPreferences(PREFS_NAME, 0);
                     SharedPreferences.Editor editor = settings1.edit();
                     editor.putInt("count", taskCompletedCount);
