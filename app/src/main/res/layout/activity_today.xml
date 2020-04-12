@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,64 +14,48 @@
         android:background="@color/colorPrimary"
         android:gravity="center"
         android:text="Today"
-        android:textSize="16dp"
-        android:textAllCaps="true"
         android:textAlignment="center"
+        android:textAllCaps="true"
         android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textSize="16dp"
+        android:textStyle="bold" />
 
     <ImageButton
         android:id="@+id/menuBtn"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:background="@color/none"
-        android:src="@drawable/menu_lines"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        app:layout_constraintStart_toStartOf="@+id/navbar"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/profileBtn"
-        android:layout_width="24dp"
-        android:layout_height="wrap_content"
         android:background="@color/none"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="13dp"
-        android:src="@drawable/person"
-        android:tint="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/navbar"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:src="@drawable/menu_lines" />
 
 
-    <LinearLayout
-        android:id="@+id/LinearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.172"
-        tools:layout_editor_absoluteX="0dp"></LinearLayout>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/navbar"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp">
+
+        <LinearLayout
+            android:id="@+id/LinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"></LinearLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/countDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:textSize="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975" />
+        android:layout_alignRight="@id/navbar"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="25dp"
+        android:background="@color/none"
+        android:textColor="@color/offWhite"
+        android:textSize="22dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

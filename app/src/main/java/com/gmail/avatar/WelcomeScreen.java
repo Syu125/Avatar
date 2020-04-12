@@ -132,7 +132,7 @@ public class WelcomeScreen extends AppCompatActivity {
             ctv.setWidth(1500);
             ctv.setGravity(Gravity.CENTER_VERTICAL);
             ctv.setHeight(1000);
-            ctv.setTextSize((float) 20);
+            ctv.setTextSize((float) 16);
             ctv.setBackgroundResource(R.drawable.border);
             ctv.setTextColor(this.getResources().getColor(R.color.colorPrimaryDark));
             ctv.setText(vals[at]);
@@ -141,9 +141,9 @@ public class WelcomeScreen extends AppCompatActivity {
 
             if (checkFinal == vals.length - 9) {
                 // TODO: THIS CODE MAY NO LONGER WORK AS THINGS ARE ADDED.
-                ctv.setPadding(80, 80, 80, 80);
+                ctv.setPadding(80, 60, 80, 80);
             } else {
-                ctv.setPadding(80, 80, 80, 0);
+                ctv.setPadding(80, 60, 80, 60);
                 checkFinal++;
             }
 

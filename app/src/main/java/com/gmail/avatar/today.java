@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.FileNotFoundException;
@@ -32,6 +35,7 @@ public class today extends AppCompatActivity {
     int day = 0;
     public static final String PREFS_NAME = "MyPrefsFile";
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,13 +87,23 @@ public class today extends AppCompatActivity {
         for (Element e : elements) {
             ArrayList<Task> temp = e.getSelectedTasks();
             for (final Task t : temp) {
+
                 // Create Checkbox Dynamically
                 CheckBox checkBox = new CheckBox(this);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//                checkBox.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                params.setMargins(40, 20, 40, 20);
+                checkBox.setLayoutParams(params);
                 checkBox.setText(t.getTaskName());
+                checkBox.setTextSize((float) 16);
+                checkBox.setTextColor(getResources().getColorStateList(R.color.colorPrimaryDark));
                 checkBox.setWidth(1300);
-                checkBox.setHeight(200);
-                checkBox.setBackgroundColor(Color.WHITE);
-                checkBox.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                checkBox.setHeight(250);
+                checkBox.setBackgroundResource(R.drawable.rounded_button);
+                checkBox.setBackgroundTintList(getResources().getColorStateList(R.color.white));
+                checkBox.setGravity(Gravity.CENTER_VERTICAL);
+
+                checkBox.setPadding(10, 10, 10, 20);
                 if (linearLayout != null) {
                     linearLayout.addView(checkBox);
                 }
