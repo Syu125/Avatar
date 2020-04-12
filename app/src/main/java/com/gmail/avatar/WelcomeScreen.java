@@ -76,7 +76,7 @@ public class WelcomeScreen extends AppCompatActivity {
                 for(Task t: get){
                     temp.add(t);
                 }
-                openMenu();
+                openToday();
             }
         });
         linearLayout = findViewById(R.id.LinearLayout);
