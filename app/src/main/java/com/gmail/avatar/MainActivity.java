@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             }, SPLASH_DISPLAY_LENGTH);
         }
         SharedPreferences.Editor editor = settings.edit();
-        editor.putInt("date", day);
+        editor.putInt("date", 0);
         editor.commit();
 
         //openMenu();

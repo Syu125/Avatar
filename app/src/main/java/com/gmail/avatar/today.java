@@ -27,6 +27,7 @@ import java.util.ArrayList;
 
 public class today extends AppCompatActivity {
     ArrayList<Element> elements = new ArrayList<>();
+    ArrayList<Element> full_elements = new ArrayList<>();
     ImageButton B_menu;
     ArrayList<CheckBox> checkBoxes;
     TextView countText;
@@ -73,6 +74,7 @@ public class today extends AppCompatActivity {
 
 
         elements = WelcomeScreen.getElements();
+        full_elements = WelcomeScreen.getElements();
         System.out.println(elements);
         for (Element e : elements) {
             ArrayList<Task> temp = e.getSelectedTasks();
@@ -97,12 +99,32 @@ public class today extends AppCompatActivity {
                 if (linearLayout != null) {
                     linearLayout.addView(checkBox);
                 }
-                checkBox.setOnClickListener(new View.OnClickListener() {
+                checkBox.setChecked(false);
+                checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
-                    public void onClick(View v) {
-                        completedTask(t);
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if(checkBox.isChecked()) {
+                            completedTask(t);
+                        }
+                        else {
+                            System.out.println("HIT");
+                            addTask(t);
+                        }
                     }
                 });
+                /*checkBox.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(checkBox.isChecked()){
+                            completedTask(t);
+                        }
+                        if(!checkBox.isChecked()){
+                            addTask(t);
+                        }
+                    }
+
+                });*/
+
                 checkBoxes.add(checkBox);
 
             }
@@ -127,7 +149,7 @@ public class today extends AppCompatActivity {
             }
             for (Task ta : tasks_temp) {
                 if (ta.getTaskName().equals(t.getTaskName())) {
-                    taskCompletedCount=0;
+                    taskCompletedCount++;
                     SharedPreferences settings1 = getSharedPreferences(PREFS_NAME, 0);
                     SharedPreferences.Editor editor = settings1.edit();
                     editor.putInt("count", taskCompletedCount);
@@ -138,6 +160,33 @@ public class today extends AppCompatActivity {
             }
         }
 
+    }
+    public void addTask(Task t) {
+        Element[] elements_temp = new Element[full_elements.size()];
+        for (int i = 0; i < full_elements.size(); i++) {
+            elements_temp[i] = full_elements.get(i);
+        }
+        for (Element e : elements_temp) {
+            ArrayList<Task> tempTasks = e.getFullTasks();
+            Task[] tasks_temp = new Task[tempTasks.size()];
+            for (int i = 0; i < tempTasks.size(); i++) {
+                tasks_temp[i] = tempTasks.get(i);
+            }
+            for (Task ta : tasks_temp) {
+                if (ta.getTaskName().equals(t.getTaskName())) {
+                    System.out.println("SUBTRACTED");
+                    taskCompletedCount--;
+                    SharedPreferences settings1 = getSharedPreferences(PREFS_NAME, 0);
+                    SharedPreferences.Editor editor = settings1.edit();
+                    editor.putInt("count", taskCompletedCount);
+                    editor.commit();
+                    countText.setText(String.valueOf(taskCompletedCount));
+                    e.addTask(t);
+                    e.setTaskClassEqual();
+                }
+            }
+        }
+    elements = full_elements;
     }
 
 
