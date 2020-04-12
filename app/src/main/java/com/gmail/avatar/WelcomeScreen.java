@@ -1,9 +1,12 @@
 package com.gmail.avatar;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,6 +19,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -26,7 +30,7 @@ public class WelcomeScreen extends AppCompatActivity {
     ArrayList<String> earthT;
     ArrayList<String> airT;
 
-    ArrayList<Element> elements = new ArrayList<Element>();
+    private static ArrayList<Element> elements = new ArrayList<Element>();
     Element E_fire;
     Element E_water;
     Element E_earth;
@@ -35,12 +39,13 @@ public class WelcomeScreen extends AppCompatActivity {
     Button testB;
 
 
+
     LinearLayout linearLayout;
     ArrayList<CheckedTextView> ctvs;
 
     int num = 3;
     int result = 0;
-    int at = 1;
+    int at = 0;
     int size = 0;
     String[] vals;
 
@@ -76,7 +81,7 @@ public class WelcomeScreen extends AppCompatActivity {
                 for(Task t: get){
                     temp.add(t);
                 }
-                openMenu();
+                openToday();
             }
         });
         linearLayout = findViewById(R.id.LinearLayout);
@@ -94,7 +99,7 @@ public class WelcomeScreen extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        vals = text.split(" ");
+        vals = text.split("\n");
 
         addTasks(fireT, 3);
         addTasks(waterT, 3);
@@ -111,27 +116,50 @@ public class WelcomeScreen extends AppCompatActivity {
         elements.add(E_earth);
         elements.add(E_air);
 
-
     }
-public void openMenu(){
-        Intent intent = new Intent(this, Menu.class);
+    public void openToday(){
+        Intent intent = new Intent(this, today.class);
         startActivity(intent);
-}
+    }
+
+    int checkFinal = 1;
     public void addTasks(ArrayList<String> a, int n) {
-        at += 2;
+        at ++;
         for (int i = 0; i < n; i++) {
             a.add(vals[at]);
             final CheckedTextView ctv = new CheckedTextView(this);
             ctv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            ctv.setWidth(1200);
+            ctv.setWidth(1500);
+            ctv.setGravity(Gravity.CENTER_VERTICAL);
+            ctv.setHeight(1000);
+            ctv.setTextSize((float) 20);
+            ctv.setBackgroundResource(R.drawable.border);
+            ctv.setTextColor(this.getResources().getColor(R.color.colorPrimaryDark));
             ctv.setText(vals[at]);
             ctv.setChecked(false);
             ctv.setCheckMarkDrawable(android.R.drawable.checkbox_off_background);
+
+            if (checkFinal == vals.length - 9) {
+                // TODO: THIS CODE MAY NO LONGER WORK AS THINGS ARE ADDED.
+                ctv.setPadding(80, 80, 80, 80);
+            } else {
+                ctv.setPadding(80, 80, 80, 0);
+                checkFinal++;
+            }
+
             ctv.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
                     ctv.setChecked(!ctv.isChecked());
                     ctv.setCheckMarkDrawable(ctv.isChecked() ? android.R.drawable.checkbox_on_background : android.R.drawable.checkbox_off_background);
+                    if (ctv.isChecked()) {
+                        ctv.setBackgroundResource(R.drawable.border_selected);
+                    } else {
+                        ctv.setBackgroundResource(R.drawable.border);
+                    }
+
+                    // Checks Tasks
                     for (String s : fireT) {
                         if (ctv.getText().equals(s)) {
                             E_fire.addSelectedTask(E_fire.getTask(s));
@@ -172,7 +200,7 @@ public void openMenu(){
 
         return null;
     }
-public ArrayList<Element>getElements(){
+public static ArrayList<Element>getElements(){
         return  elements;
 }
 

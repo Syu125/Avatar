@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#555555</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="white">#FFFFFF</color>
+    <color name="none">#00000000</color>
+    <color name="offWhite">#ECECEC</color>
 
     <!-- Elements -->
     <color name="firePrimary">#B92121</color>
@@ -13,5 +15,5 @@
     <color name="earthPrimary">#71AA39</color>
     <color name="earthAccent">#B7E296</color>
     <color name="airPrimary">#555555</color>
-    <color name="air">#B6B6B6</color>
+    <color name="airAccent">#B6B6B6</color>
 </resources>
