@@ -14,31 +14,37 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class DisplayElementE extends AppCompatActivity {
-ArrayList<String>list;
-    ArrayList<TextView>tasks;
-   LinearLayout linearLayout;
-   ArrayList<String>info = new ArrayList<>();
+    ArrayList<String> list;
+    ArrayList<TextView> tasks;
+    LinearLayout linearLayout;
+    ArrayList<String> info = new ArrayList<>();
     ImageButton b;
+    TextView elementName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_element);
 
-        linearLayout  =  findViewById(R.id.rootLayout);
-        tasks = new ArrayList<TextView>();
-            final TextView tv=new TextView(this);
-            tv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            tv.setGravity(Gravity.CENTER);
-            tv.setText("1. Go for a walk\n" +
-                    "2. Make a compost\n" +
-                    "3. Pick up litter around your neighborhood");
-            tv.setTextSize(40);
-            if (linearLayout != null) {
-                linearLayout.addView(tv);
-            }
+        elementName = findViewById(R.id.navbar);
+        elementName.setText("Earth");
 
-        b = findViewById(R.id.menuBtnn);
+        linearLayout = findViewById(R.id.rootLayout);
+        tasks = new ArrayList<TextView>();
+        final TextView tv = new TextView(this);
+        tv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        tv.setGravity(Gravity.CENTER);
+        tv.setText("1. Go for a walk\n\n" +
+                "2. Make a compost\n\n" +
+                "3. Pick up litter around your neighborhood");
+        tv.setTextSize(24);
+        tv.setGravity(Gravity.LEFT);
+        tv.setTextColor(this.getResources().getColor(R.color.colorPrimaryDark));
+        if (linearLayout != null) {
+            linearLayout.addView(tv);
+        }
+
+        b = findViewById(R.id.menuBtn);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,7 +52,8 @@ ArrayList<String>list;
             }
         });
     }
-    public void openMenu(){
+
+    public void openMenu() {
         Intent i = new Intent(this, Menu.class);
         startActivity(i);
     }
